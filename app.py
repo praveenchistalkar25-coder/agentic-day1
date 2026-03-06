@@ -1,20 +1,30 @@
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_openai import ChatOpenAI
-from langchain_core.messages import HumanMessage, SystemMessage, AIMessage
+from langchain_core.messages import HumanMessage, SystemMessage
 
+# Load environment variables
+load_dotenv()
+
+# Initialize OpenAI model
+llm = ChatOpenAI()
+
+# Call OpenAI with a simple string
 resp1 = llm.invoke("We are building an AI system for processing medical insurance claims.")
 resp2 = llm.invoke("What are the main risks in this system?")
 
-print(response.content)
+print(resp1.content)
+print(resp2.content)
 
+# Call OpenAI with multiple messages
 messages = [
     SystemMessage(content="You are a senior AI architect reviewing production systems."),
     HumanMessage(content="We are building an AI system for processing medical insurance claims."),
     HumanMessage(content="What are the main risks in this system?")
 ]
 
-llm.invoke(messages)
+resp2 = llm.invoke(messages)
+print(resp2.content)
 
 """
 Reflection:
